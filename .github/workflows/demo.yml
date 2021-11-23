@@ -1,9 +1,9 @@
 name: CI for Remote HelloWorld
 
-on:
+on: 
   push:
     branches: [main]
-
+    
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,19 +14,19 @@ jobs:
       with:
         python-version: 3.8
     - name: Install dependencies
-      run:
+      run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest pytest-cov
-       
+    
     - name: Checkout Own Repo to cloud
       uses: actions/checkout@v2
-      with:
+      with: 
         repository: jamz903/HelloWorldDemo
-        
+    
     - name: Checkout private repo remotely
       uses: actions/checkout@v2
       with:
-        repository: jamz903/DevOpsQARepo
+        repository: lowkh2/DevOpsQARepo
         path: tests
         token: ${{ secrets.QA_REMOTE }}
         
